@@ -384,6 +384,8 @@ namespace
         count += remove_all_aux(itr->path(), tmp_type, ec);
       }
     }
+    boost::filesystem::detail::permissions(p, perms::remove_perms | perms::all_all, ec);
+    boost::filesystem::detail::permissions(p, perms::add_perms | perms::others_write | perms::group_write | perms::owner_write, ec);
     remove_file_or_directory(p, type, ec);
     return count;
   }
